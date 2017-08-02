@@ -14,6 +14,9 @@ namespace ConsoleDelegateApp
 
         delegate int Operation(int x, int y);
 
+        delegate int Square(int x); // объявляем делегат, принимающий int и возвращающий int
+
+
         static void Main(string[] args)
         {
             #region
@@ -66,13 +69,13 @@ namespace ConsoleDelegateApp
             //Допустим, в случае вывода денег с помощью метода Withdraw нам надо как-то уведомлять об этом самого клиента и, может быть, другие объекты.
 
             // создаем банковский счет
-            Account account = new Account(200, 6);
-            // Добавляем в делегат ссылку на метод Show_Message
-            // а сам делегат передается в качестве параметра метода RegisterHandler
-            account.RegisterHandler(Show_Message); //Поскольку делегат объявлен внутри класса Account
-            // Два раза подряд пытаемся снять деньги
-            account.Withdraw(100);
-            account.Withdraw(150);
+            //Account account = new Account(200, 6);
+            //// Добавляем в делегат ссылку на метод Show_Message
+            //// а сам делегат передается в качестве параметра метода RegisterHandler
+            //account.RegisterHandler(Show_Message); //Поскольку делегат объявлен внутри класса Account
+            //// Два раза подряд пытаемся снять деньги
+            //account.Withdraw(100);
+            //account.Withdraw(150);
 
 
             //Таким образом, мы создали механизм обратного вызова для класса Account, который срабатывает в случае снятия денег. 
@@ -101,6 +104,60 @@ namespace ConsoleDelegateApp
             //account.Withdraw(50);
 
             #endregion
+
+
+            //GetMessage message = delegate
+            //{
+            //    Console.WriteLine("анонимный делегат");
+            //};
+            //message();
+
+            //Operation op = delegate (int x, int y)
+            //{
+            //    return x * y;
+            //};
+
+            // var t =   op(5, 6);
+            //Console.WriteLine(t);
+            //Console.ReadLine();
+
+
+            //Лямбда-выражения представляют упрощенную запись анонимных методов.
+
+            // объекту делегата присваивается лямбда-выражение
+            // i - это параметр
+            //i*i - выражение
+            Square squareInt = i => i * i;
+            int z = squareInt(6); // используем делегат
+            Console.WriteLine(z); // выводит число 36
+
+            //параметров не требуется
+            GetMessage message = () => { Console.WriteLine("Лямбда-выражение"); };
+
+            //ссылку на метод
+
+            GetMessage GetMessage = () => GoodMorning();
+
+            GetMessage();
+
+
+
+
+
+
+
+
+            //int[] integers = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            //// найдем сумму чисел больше 5
+            //int result1 = Sum(integers, x => x > 5);
+            //Console.WriteLine(result1); // 30
+
+            //// найдем сумму четных чисел
+            //int result2 = Sum(integers, x => x % 2 == 0);
+            //Console.WriteLine(result2);  //20
+
+            //Console.Read();
 
             Console.ReadLine();
         }
@@ -148,5 +205,18 @@ namespace ConsoleDelegateApp
             // Сбрасываем настройки цвета
             Console.ResetColor();
         }
+
+
+
+        //private static int Sum(int[] numbers, IsEqual func)
+        //{
+        //    int result = 0;
+        //    foreach (int i in numbers)
+        //    {
+        //        if (func(i))
+        //            result += i;
+        //    }
+        //    return result;
+        //}
     }
 }

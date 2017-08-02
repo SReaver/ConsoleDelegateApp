@@ -16,7 +16,7 @@ namespace ConsoleDelegateApp
 
         // Создаем переменную делегата
         AccountStateHandler del;
-
+        
         //empl 1
         // Регистрируем делегат
         public void RegisterHandler(AccountStateHandler _del)
@@ -68,11 +68,14 @@ namespace ConsoleDelegateApp
 
                 if (del != null)
                     del("Сумма " + sum.ToString() + " снята со счета");
+
+
             }
             else
             {
                 if (del != null)
                     del("Недостаточно денег на счете");
+
             }
         }
 
